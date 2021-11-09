@@ -14,6 +14,8 @@ namespace BankEmulator
             Client client1 = new Client("Ada Nerin", 1200);
             client.Transfer(client1, 500);
             Console.WriteLine("{0} curren balance: {1}", client1.Name, client1.AccBalance);
+            client1.PhoneNumber = "+380983458763";
+            client1.TopUpYourPhone(85);
         }
     }
 }

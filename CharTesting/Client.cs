@@ -60,7 +60,9 @@ namespace BankEmulator
 
         public void TopUpYourPhone(double amount)
         {
-            throw new NotImplementedException();
+            Withdraw(amount);
+            Console.WriteLine("The account of this number: {0} was topped up: {1}\nYour current balance: {2}",
+                PhoneNumber, amount, AccBalance);
         }
     }
 }

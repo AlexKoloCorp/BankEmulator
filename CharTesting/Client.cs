@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace BankEmulator
 {
-    class Client : IAccauntActivity
-    {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Password { get; set; }
+    class Client : Person, IAccauntActivity
+    {        
         private double _accBalance;
 
         public double AccBalance
@@ -19,9 +15,9 @@ namespace BankEmulator
             get { return _accBalance; }
         }
         public Client() { }
-        public Client(string name, double accBalance)
-        {
-            Name = name;
+        public Client(string name, string pasportId, string phoneNumber, double accBalance) :
+            base(name, pasportId, phoneNumber)
+        {            
             _accBalance = accBalance;
         }
         public void Put(double amount)
@@ -63,6 +59,11 @@ namespace BankEmulator
             Withdraw(amount);
             Console.WriteLine("The account of this number: {0} was topped up: {1}\nYour current balance: {2}",
                 PhoneNumber, amount, AccBalance);
+        }
+        public override void DisplayInfo()
+        {
+            Console.WriteLine("Person name: {0};\nPerson pasportId: {1};\nPerson phone number: {2};\nPerson balance: {3};",
+            Name, PasportId, PhoneNumber, AccBalance);
         }
     }
 }

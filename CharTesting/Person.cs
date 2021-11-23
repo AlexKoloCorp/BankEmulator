@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BankEmulator
 {
@@ -11,6 +7,13 @@ namespace BankEmulator
         public string Name { get; set; }
         public string PasportId { get; set; }
         public string PhoneNumber { get; set; }
+        public delegate void AccauntActivityHandler(object o, AccauntEventArgs args);
+        protected AccauntActivityHandler _accauntActivity;
+        public event AccauntActivityHandler AccauntActivityEvent
+        {
+            add { _accauntActivity += value; Console.WriteLine($"method {value.Method.Name} was added to invocation list"); }
+            remove { _accauntActivity -= value; Console.WriteLine($"method {value.Method.Name} has been removed from invocation list"); }
+        }
 
         public Person() { }
         public Person(string name, string pasportId, string phoneNumber)

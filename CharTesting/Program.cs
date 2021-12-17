@@ -19,7 +19,7 @@ namespace BankEmulator
             //foreach (Client item in bankServer)
             //{
             //    item.DisplayInfo();
-            //}
+            //}            
             Console.WriteLine("******************************");
             Client client2 = (Client)client.Clone();
             client2.AccauntActivityEvent += GetMessage;
@@ -31,7 +31,21 @@ namespace BankEmulator
             client2.testClass.Name = "Client2 class name";            
             Console.WriteLine($"Another class inside Client class = {client2.testClass.Name}"); 
             client.DisplayInfo();
-            Start:
+            Console.WriteLine("__________________________________________________________________________");
+            Client[] clients = new Client[] { client, client1, client2 };
+            Console.WriteLine("~~Befor sorting~~");
+            foreach (var item in clients)
+            {
+                item.DisplayInfo();
+            }
+            Console.WriteLine("~~After sorting~~");
+            Array.Sort(clients, new ClientsComparer());
+            foreach (var item in clients)
+            {
+                item.DisplayInfo();
+            }
+
+        Start:
             Console.WriteLine("\t\t~~Bank menu~~\n" +
                 "1. replenish your accaunt;" +
                 "\n2. withdraw money from your accaunt;" +

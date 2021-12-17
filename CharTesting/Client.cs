@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace BankEmulator
 {
@@ -14,10 +16,28 @@ namespace BankEmulator
             Name = name;
         }
     }
+    class ClientsComparer : IComparer<Client>
+    {
+        public int Compare(Client x, Client y)
+        {
+            if (x.AccBalance>y.AccBalance)
+            {
+                return 1;
+            }
+            else if (x.AccBalance < y.AccBalance)
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
     class Client : Person, IAccauntActivity, ICloneable
     {        
         private double _accBalance;
-        public TestClass testClass = new TestClass { Name = "someNameForTestClass"};
+        public TestClass testClass = new TestClass { Name = "default"};
         public double AccBalance
         {
             get { return _accBalance; }
@@ -88,6 +108,6 @@ namespace BankEmulator
                 _accBalance = this.AccBalance,
                 testClass = testClassCopy
             };
-        }
+        }      
     }
 }

@@ -58,6 +58,6 @@ namespace BankEmulator
         public IEnumerator<Client> GetEnumerator()
         {
             return new ClientEnumerator(listOfClients);
-        }
+        }       
     }
 }

@@ -2,10 +2,22 @@
 
 namespace BankEmulator
 {
-    class Client : Person, IAccauntActivity
+    class TestClass
+    {
+        public string Name { get; set; }
+        public TestClass()
+        {
+
+        }
+        public TestClass(string name)
+        {
+            Name = name;
+        }
+    }
+    class Client : Person, IAccauntActivity, ICloneable
     {        
         private double _accBalance;
-
+        public TestClass testClass = new TestClass { Name = "someNameForTestClass"};
         public double AccBalance
         {
             get { return _accBalance; }
@@ -61,8 +73,21 @@ namespace BankEmulator
         }
         public override void DisplayInfo()
         {            
-            Console.WriteLine("Person name: {0};\nPerson pasportId: {1};\nPerson phone number: {2};\nPerson balance: {3};",
+            Console.WriteLine("|~~~~~~~~~|\nPerson name: {0};\nPerson pasportId: {1};\nPerson phone number: {2};\nPerson balance: {3};\n|~~~~~~~~~|",
             Name, PasportId, PhoneNumber, AccBalance);
+        }
+
+        public object Clone()
+        {
+            TestClass testClassCopy = new TestClass{ Name = this.testClass.Name };
+            return new Client
+            {
+                Name = this.Name,
+                PasportId = this.PasportId,
+                PhoneNumber = this.PhoneNumber,
+                _accBalance = this.AccBalance,
+                testClass = testClassCopy
+            };
         }
     }
 }
